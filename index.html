@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sociedad Pro Niños Sordos de Puerto Rico, Inc. — Ponce, Puerto Rico</title>
-<meta name="description" content="Sociedad Pro Niños Sordos de Puerto Rico, Inc. es una organización sin fines de lucro 501(c)(3) en Ponce, Puerto Rico. Ofrece servicios educativos a niñas y niños sordos, con problemas auditivos y oyentes bajo el umbral de pobreza, desde nivel preescolar hasta quinto grado." />
+<meta name="description" content="Sociedad Pro Niños Sordos de Puerto Rico, Inc. is a 501(c)(3) nonprofit organization in Ponce, Puerto Rico. It provides educational services to deaf and hard-of-hearing children, and to hearing children living below the poverty threshold, from preschool through fifth grade." />
 <link rel="canonical" href="https://sociedadproninossordos.org/" />
 <meta property="og:title" content="Sociedad Pro Niños Sordos de Puerto Rico, Inc." />
-<meta property="og:description" content="Servicios educativos para niñas y niños sordos e hipoacúsicos en Ponce, Puerto Rico. Organización 501(c)(3), EIN 66-0356920." />
+<meta property="og:description" content="Educational services for deaf and hard-of-hearing children in Ponce, Puerto Rico. A 501(c)(3) nonprofit organization, EIN 66-0356920." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://sociedadproninossordos.org/" />
 <meta name="robots" content="index,follow" />
@@ -33,13 +33,14 @@
   a{color:var(--deep-2)}
   a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:3px}
 
-  /* Language switching: one DOM, two locales.
-     Selectors MUST be scoped under body — a bare [lang="en"] would also match the
-     <html> element once the script updates document.documentElement.lang, which
-     would set display:none on the whole document. */
-  body [lang="en"]{display:none}
-  body.en [lang="es"]{display:none}
-  body.en [lang="en"]{display:inline}
+  /* Language switching: one DOM, two locales. English is the default; adding
+     .es to <body> flips to Spanish.
+     Selectors MUST stay scoped under body — a bare [lang="es"] would also match
+     the <html> element once the script updates document.documentElement.lang,
+     which would set display:none on the whole document. */
+  body [lang="es"]{display:none}
+  body.es [lang="en"]{display:none}
+  body.es [lang="es"]{display:inline}
 
   .skip{position:absolute;left:-9999px}
   .skip:focus{left:1rem;top:1rem;position:fixed;z-index:99;background:#fff;padding:.6rem 1rem;border:2px solid var(--deep)}
@@ -121,7 +122,8 @@
         <li><a href="#contact"><span lang="es">Contacto</span><span lang="en">Contact</span></a></li>
       </ul>
     </nav>
-    <button class="lang" id="langBtn" type="button" aria-live="polite">English</button>
+    <!-- Label offers the OTHER language; must match the no-JS default (English). -->
+    <button class="lang" id="langBtn" type="button" aria-live="polite" aria-label="Cambiar a español">Español</button>
   </div>
 </header>
 
@@ -300,24 +302,24 @@
 </footer>
 
 <script>
-  // Single-DOM locale switch. Spanish is the default for the community served;
-  // English is available because funders and reviewers often read in English.
+  // Single-DOM locale switch. English is the default so funders and reviewers
+  // read the page in English; Spanish is one click away for the community served.
   (function () {
     var btn = document.getElementById('langBtn');
     var body = document.body;
     function apply(lang) {
-      var en = lang === 'en';
-      body.classList.toggle('en', en);
-      document.documentElement.lang = en ? 'en' : 'es';
-      btn.textContent = en ? 'Español' : 'English';
-      btn.setAttribute('aria-label', en ? 'Cambiar a español' : 'Switch to English');
+      var es = lang === 'es';
+      body.classList.toggle('es', es);
+      document.documentElement.lang = es ? 'es' : 'en';
+      btn.textContent = es ? 'English' : 'Español';
+      btn.setAttribute('aria-label', es ? 'Switch to English' : 'Cambiar a español');
       try { localStorage.setItem('lang', lang); } catch (e) {}
     }
     var saved = null;
     try { saved = localStorage.getItem('lang'); } catch (e) {}
-    apply(saved === 'en' ? 'en' : 'es');
+    apply(saved === 'es' ? 'es' : 'en');
     btn.addEventListener('click', function () {
-      apply(body.classList.contains('en') ? 'es' : 'en');
+      apply(body.classList.contains('es') ? 'en' : 'es');
     });
   })();
 </script>

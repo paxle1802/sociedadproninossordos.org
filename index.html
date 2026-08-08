@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sociedad Pro Niños Sordos de Puerto Rico, Inc. — Ponce, Puerto Rico</title>
+<meta name="description" content="Sociedad Pro Niños Sordos de Puerto Rico, Inc. es una organización sin fines de lucro 501(c)(3) en Ponce, Puerto Rico. Ofrece servicios educativos a niñas y niños sordos, con problemas auditivos y oyentes bajo el umbral de pobreza, desde nivel preescolar hasta quinto grado." />
+<link rel="canonical" href="https://sociedadproninossordos.org/" />
+<meta property="og:title" content="Sociedad Pro Niños Sordos de Puerto Rico, Inc." />
+<meta property="og:description" content="Servicios educativos para niñas y niños sordos e hipoacúsicos en Ponce, Puerto Rico. Organización 501(c)(3), EIN 66-0356920." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sociedadproninossordos.org/" />
+<meta name="robots" content="index,follow" />
+<style>
+  /* ---- design tokens: Caribbean teal + warm sand, distinct from the other builds ---- */
+  :root{
+    --ink:#12292e; --ink-soft:#3d5a60; --line:#d6e0dd;
+    --deep:#0f4c52; --deep-2:#12676d; --sea:#1d8f8a;
+    --sand:#f6efe2; --sand-2:#efe3cd; --amber:#c8791d; --coral:#b8442f;
+    --bg:#fbf9f5; --card:#ffffff;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:17px}
+  .wrap{width:min(1060px,92vw);margin-inline:auto}
+  h1,h2,h3{font-family:var(--serif);line-height:1.2;margin:0 0 .5em}
+  h1{font-size:clamp(1.9rem,4.4vw,3rem)}
+  h2{font-size:clamp(1.5rem,3vw,2.1rem)}
+  h3{font-size:1.12rem;font-family:var(--sans);font-weight:650}
+  p{margin:0 0 1em}
+  a{color:var(--deep-2)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:3px}
+
+  /* Language switching: one DOM, two locales.
+     Selectors MUST be scoped under body — a bare [lang="en"] would also match the
+     <html> element once the script updates document.documentElement.lang, which
+     would set display:none on the whole document. */
+  body [lang="en"]{display:none}
+  body.en [lang="es"]{display:none}
+  body.en [lang="en"]{display:inline}
+
+  .skip{position:absolute;left:-9999px}
+  .skip:focus{left:1rem;top:1rem;position:fixed;z-index:99;background:#fff;padding:.6rem 1rem;border:2px solid var(--deep)}
+
+  header{background:var(--deep);color:#eaf4f2}
+  .bar{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;padding:.9rem 0}
+  .brand{display:flex;gap:.7rem;align-items:center;min-width:0}
+  .mark{flex:0 0 auto;width:42px;height:42px}
+  .brand b{font-family:var(--serif);font-weight:400;font-size:1.05rem;display:block;color:#fff}
+  .brand span{font-size:.78rem;color:#a8ccc8;letter-spacing:.04em}
+  nav ul{display:flex;flex-wrap:wrap;gap:1.1rem;list-style:none;margin:0;padding:0;font-size:.92rem}
+  nav a{color:#cfe6e3;text-decoration:none}
+  nav a:hover{color:#fff;text-decoration:underline}
+  .lang{background:transparent;border:1px solid #4d8a86;color:#eaf4f2;font:inherit;font-size:.82rem;padding:.3rem .7rem;border-radius:999px;cursor:pointer}
+  .lang:hover{background:#14595f}
+
+  .hero{background:linear-gradient(160deg,var(--deep) 0%,var(--deep-2) 62%,var(--sea) 100%);color:#f2fbf9;padding:3.4rem 0 3.8rem;position:relative;overflow:hidden}
+  .hero .wrap{position:relative;z-index:2;max-width:820px}
+  .hero h1{color:#fff}
+  .hero p{font-size:1.1rem;color:#d5eeeb;max-width:60ch}
+  .waves{position:absolute;inset:auto -10% -2px -10%;height:150px;opacity:.22;z-index:1}
+  .eyebrow{display:inline-block;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:#9fd4cf;margin-bottom:.7rem}
+
+  main section{padding:3.1rem 0;border-bottom:1px solid var(--line)}
+  .lede{font-size:1.06rem;max-width:66ch}
+  .grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));margin-top:1.6rem}
+  .card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sea);border-radius:6px;padding:1.15rem 1.25rem}
+  .card h3{margin-bottom:.35rem;color:var(--deep)}
+  .card p{margin:0;font-size:.95rem;color:var(--ink-soft)}
+
+  .facts{background:var(--sand);border:1px solid var(--sand-2);border-radius:8px;padding:1.3rem 1.4rem;margin-top:1.8rem}
+  .facts dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem 1.6rem;margin:0}
+  .facts dt{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:#8a6a3c}
+  .facts dd{margin:.15rem 0 0;font-weight:600;color:var(--ink)}
+
+  table{width:100%;border-collapse:collapse;margin-top:1.4rem;font-size:.97rem}
+  caption{text-align:left;font-size:.85rem;color:var(--ink-soft);padding-bottom:.6rem}
+  th,td{text-align:left;padding:.62rem .7rem;border-bottom:1px solid var(--line)}
+  th{background:var(--sand);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#7b5c33;font-weight:650}
+  tbody tr:nth-child(even){background:#fdfcf9}
+
+  .split{display:grid;gap:1.6rem;grid-template-columns:1.15fr .85fr;align-items:start}
+  @media (max-width:760px){.split{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.3rem 1.4rem}
+  .panel h3{color:var(--deep)}
+  .panel address{font-style:normal;color:var(--ink-soft)}
+  .panel .row{padding:.55rem 0;border-bottom:1px dashed var(--line)}
+  .panel .row:last-child{border-bottom:0}
+  .k{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:#8a6a3c;display:block}
+
+  footer{background:#0d2226;color:#a9c6c3;padding:2.2rem 0;font-size:.9rem}
+  footer strong{color:#e8f4f2;font-family:var(--serif);font-weight:400}
+  footer a{color:#8fc9c4}
+  .legal{margin-top:.9rem;font-size:.82rem;color:#7fa5a2;max-width:75ch}
+</style>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="es">Saltar al contenido</span><span lang="en">Skip to content</span></a>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand">
+      <!-- abstract sound-wave mark; decorative only -->
+      <svg class="mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <circle cx="24" cy="24" r="23" fill="#12676d" stroke="#4d8a86"/>
+        <path d="M13 24h3M20 24h3M27 24h3M34 24h3" stroke="#f6efe2" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M16.5 18.5a10 10 0 0 0 0 11M31.5 18.5a10 10 0 0 1 0 11" stroke="#c8791d" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <b>Sociedad Pro Niños Sordos de Puerto Rico, Inc.</b>
+        <span>Ponce, Puerto Rico &middot; EIN 66-0356920</span>
+      </div>
+    </div>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#about"><span lang="es">Quiénes somos</span><span lang="en">About</span></a></li>
+        <li><a href="#services"><span lang="es">Servicios</span><span lang="en">Services</span></a></li>
+        <li><a href="#leadership"><span lang="es">Junta</span><span lang="en">Leadership</span></a></li>
+        <li><a href="#contact"><span lang="es">Contacto</span><span lang="en">Contact</span></a></li>
+      </ul>
+    </nav>
+    <button class="lang" id="langBtn" type="button" aria-live="polite">English</button>
+  </div>
+</header>
+
+<div class="hero">
+  <svg class="waves" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 96c150-42 300-42 450 0s300 42 450 0 150-30 300-12v78H0z" fill="#f6efe2"/>
+    <path d="M0 120c180-36 340-20 520 8s360 26 540-10 90-14 140-6v38H0z" fill="#ffffff" opacity=".35"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow"><span lang="es">Organización 501(c)(3) &middot; Ponce, Puerto Rico</span><span lang="en">501(c)(3) nonprofit &middot; Ponce, Puerto Rico</span></span>
+    <h1><span lang="es">Educación para niñas y niños sordos en Puerto Rico</span><span lang="en">Education for deaf children in Puerto Rico</span></h1>
+    <p>
+      <span lang="es">Ofrecemos servicios educativos a niñas y niños sordos, con problemas auditivos y oyentes bajo el umbral de pobreza, desde el nivel preescolar hasta quinto grado.</span>
+      <span lang="en">We provide educational services to deaf and hard-of-hearing children, and to hearing children living below the poverty threshold, from preschool through fifth grade.</span>
+    </p>
+  </div>
+</div>
+
+<main id="main">
+
+<section id="about">
+  <div class="wrap">
+    <h2><span lang="es">Quiénes somos</span><span lang="en">Who we are</span></h2>
+    <p class="lede">
+      <span lang="es">La Sociedad Pro Niños Sordos de Puerto Rico, Inc. es una organización sin fines de lucro que sirve a la comunidad sorda e hipoacúsica desde Ponce. Nuestro trabajo se centra en la etapa escolar temprana, cuando el acceso a la comunicación determina el resto de la trayectoria educativa de un niño.</span>
+      <span lang="en">Sociedad Pro Niños Sordos de Puerto Rico, Inc. is a nonprofit organization serving the deaf and hard-of-hearing community from Ponce. Our work focuses on the early school years, when access to communication shapes the rest of a child's educational path.</span>
+    </p>
+    <p class="lede">
+      <span lang="es">Atendemos también a niñas y niños oyentes que viven bajo el umbral de pobreza, de modo que el salón sea un espacio compartido y no separado del resto de la comunidad.</span>
+      <span lang="en">We also serve hearing children living below the poverty threshold, so that the classroom is a shared space rather than one set apart from the wider community.</span>
+    </p>
+
+    <div class="facts">
+      <dl>
+        <div>
+          <dt><span lang="es">Nombre legal</span><span lang="en">Legal name</span></dt>
+          <dd>Sociedad Pro Niños Sordos de Puerto Rico, Inc.</dd>
+        </div>
+        <div>
+          <dt>EIN</dt>
+          <dd>66-0356920</dd>
+        </div>
+        <div>
+          <dt><span lang="es">Estatus</span><span lang="en">Status</span></dt>
+          <dd><span lang="es">501(c)(3) — organización benéfica pública</span><span lang="en">501(c)(3) public charity</span></dd>
+        </div>
+        <div>
+          <dt><span lang="es">Determinación del IRS</span><span lang="en">IRS determination</span></dt>
+          <dd><span lang="es">Noviembre de 2014</span><span lang="en">November 2014</span></dd>
+        </div>
+        <div>
+          <dt><span lang="es">Área de servicio</span><span lang="en">Service area</span></dt>
+          <dd>Ponce, Puerto Rico</dd>
+        </div>
+        <div>
+          <dt><span lang="es">Niveles</span><span lang="en">Grade levels</span></dt>
+          <dd><span lang="es">Preescolar a quinto grado</span><span lang="en">Preschool through 5th grade</span></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <h2><span lang="es">Servicios</span><span lang="en">Services</span></h2>
+    <p class="lede">
+      <span lang="es">Nuestro programa educativo cubre el nivel preescolar hasta quinto grado, en horario escolar regular.</span>
+      <span lang="en">Our educational program runs from preschool through fifth grade, on a regular school schedule.</span>
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3><span lang="es">Educación preescolar</span><span lang="en">Preschool education</span></h3>
+        <p><span lang="es">Enseñanza en los primeros años escolares, adaptada a niñas y niños sordos e hipoacúsicos.</span><span lang="en">Instruction in the earliest school years, adapted for deaf and hard-of-hearing children.</span></p>
+      </div>
+      <div class="card">
+        <h3><span lang="es">Primaria hasta quinto grado</span><span lang="en">Elementary through 5th grade</span></h3>
+        <p><span lang="es">Continuidad del programa académico durante la etapa primaria.</span><span lang="en">A continuous academic program through the elementary years.</span></p>
+      </div>
+      <div class="card">
+        <h3><span lang="es">Niñez bajo el umbral de pobreza</span><span lang="en">Children below the poverty threshold</span></h3>
+        <p><span lang="es">El programa incluye a niñas y niños oyentes de familias de bajos ingresos.</span><span lang="en">The program includes hearing children from low-income families.</span></p>
+      </div>
+      <div class="card">
+        <h3><span lang="es">Acceso a la comunicación</span><span lang="en">Access to communication</span></h3>
+        <p><span lang="es">Un entorno escolar donde la comunicación es accesible durante toda la jornada.</span><span lang="en">A school setting where communication is accessible throughout the day.</span></p>
+      </div>
+    </div>
+    <!-- TODO(org): add real classroom / program photographs here once provided. Do not use stock imagery. -->
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="wrap">
+    <h2><span lang="es">Junta de Directores</span><span lang="en">Board of Directors</span></h2>
+    <p class="lede">
+      <span lang="es">La organización es dirigida por una junta de directores voluntaria, estable desde hace más de una década.</span>
+      <span lang="en">The organization is governed by a volunteer board of directors that has been stable for more than a decade.</span>
+    </p>
+    <table>
+      <caption>
+        <span lang="es">Según las declaraciones informativas anuales (Formulario 990) presentadas al IRS.</span>
+        <span lang="en">As reported on the organization's annual IRS information returns (Form 990).</span>
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col"><span lang="es">Nombre</span><span lang="en">Name</span></th>
+          <th scope="col"><span lang="es">Cargo</span><span lang="en">Role</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Aidita Rodríguez Droz</td><td><span lang="es">Presidenta</span><span lang="en">President</span></td></tr>
+        <tr><td>Héctor I. Zayas Ortiz</td><td><span lang="es">Vicepresidente</span><span lang="en">Vice-president</span></td></tr>
+        <tr><td>Aurora Rodríguez</td><td><span lang="es">Tesorera</span><span lang="en">Treasurer</span></td></tr>
+        <tr><td>Juan C. Rodríguez</td><td><span lang="es">Subtesorero</span><span lang="en">Sub-treasurer</span></td></tr>
+        <tr><td>Marta Santiago</td><td><span lang="es">Secretaria</span><span lang="en">Secretary</span></td></tr>
+        <tr><td>Aida Ruiz Olivera</td><td><span lang="es">Vocal</span><span lang="en">Board member</span></td></tr>
+        <tr><td>Cindy Rivera Milanés</td><td><span lang="es">Vocal</span><span lang="en">Board member</span></td></tr>
+        <tr><td>Nelson Padilla Cruz</td><td><span lang="es">Vocal</span><span lang="en">Board member</span></td></tr>
+        <tr><td>Stephanie Rivas Martínez</td><td><span lang="es">Vocal</span><span lang="en">Board member</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2><span lang="es">Contacto</span><span lang="en">Contact</span></h2>
+    <div class="split">
+      <div class="panel">
+        <h3><span lang="es">Visítanos o escríbenos</span><span lang="en">Visit or write to us</span></h3>
+        <div class="row">
+          <span class="k"><span lang="es">Dirección</span><span lang="en">Address</span></span>
+          <!-- TODO(org): CONFIRM operating address. IRS BMF lists 7121 St Divina Providencia, Santa María, Ponce PR 00728;
+               the United Way Puerto Rico service listing gives the address below. Verify with the organization before launch. -->
+          <address>Calle Navarra 1675, Urb. La Rambla<br />Ponce, Puerto Rico 00716</address>
+        </div>
+        <div class="row">
+          <span class="k"><span lang="es">Correo electrónico</span><span lang="en">Email</span></span>
+          <a href="mailto:info@sociedadproninossordos.org">info@sociedadproninossordos.org</a>
+        </div>
+        <div class="row">
+          <span class="k"><span lang="es">Horario</span><span lang="en">Hours</span></span>
+          <span lang="es">Lunes a viernes, 7:30 a.m. – 2:30 p.m.</span>
+          <span lang="en">Monday to Friday, 7:30 a.m. – 2:30 p.m.</span>
+        </div>
+        <!-- TODO(org): add a verified telephone number. None is published on any source checked; do not invent one. -->
+      </div>
+      <div class="panel">
+        <h3><span lang="es">Sobre esta organización</span><span lang="en">About this organization</span></h3>
+        <p>
+          <span lang="es">Sociedad Pro Niños Sordos de Puerto Rico, Inc. está reconocida por el Servicio de Rentas Internas de los Estados Unidos (IRS) como organización exenta de contribuciones bajo la sección 501(c)(3), con número de identificación patronal (EIN) 66-0356920.</span>
+          <span lang="en">Sociedad Pro Niños Sordos de Puerto Rico, Inc. is recognized by the United States Internal Revenue Service as a tax-exempt organization under section 501(c)(3), Employer Identification Number 66-0356920.</span>
+        </p>
+        <p>
+          <span lang="es">La organización presenta anualmente el Formulario 990 al IRS. Estos documentos son de acceso público.</span>
+          <span lang="en">The organization files a Form 990 with the IRS each year. Those filings are publicly available.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>Sociedad Pro Niños Sordos de Puerto Rico, Inc.</strong><br />
+    Calle Navarra 1675, Urb. La Rambla, Ponce, Puerto Rico 00716 &middot;
+    <a href="mailto:info@sociedadproninossordos.org">info@sociedadproninossordos.org</a>
+    <p class="legal">
+      <span lang="es">Organización sin fines de lucro 501(c)(3) &middot; EIN 66-0356920 &middot; Ponce, Puerto Rico. Las donaciones pueden ser deducibles de contribuciones en la medida permitida por la ley.</span>
+      <span lang="en">501(c)(3) nonprofit organization &middot; EIN 66-0356920 &middot; Ponce, Puerto Rico. Contributions may be tax-deductible to the extent permitted by law.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Single-DOM locale switch. Spanish is the default for the community served;
+  // English is available because funders and reviewers often read in English.
+  (function () {
+    var btn = document.getElementById('langBtn');
+    var body = document.body;
+    function apply(lang) {
+      var en = lang === 'en';
+      body.classList.toggle('en', en);
+      document.documentElement.lang = en ? 'en' : 'es';
+      btn.textContent = en ? 'Español' : 'English';
+      btn.setAttribute('aria-label', en ? 'Cambiar a español' : 'Switch to English');
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    apply(saved === 'en' ? 'en' : 'es');
+    btn.addEventListener('click', function () {
+      apply(body.classList.contains('en') ? 'es' : 'en');
+    });
+  })();
+</script>
+</body>
+</html>
